@@ -1,14 +1,14 @@
-.ellipsis.data-v-71e217db {
+.ellipsis.data-v-3349f22e {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.single-line.data-v-71e217db {
+.single-line.data-v-3349f22e {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.double-line.data-v-71e217db {
+.double-line.data-v-3349f22e {
   display: -webkit-box;
   word-break: break-all;
   text-overflow: ellipsis;
@@ -16,10 +16,10 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
-.clickable.data-v-71e217db:active {
+.clickable.data-v-3349f22e:active {
   opacity: 0.8;
 }
-.content.data-v-71e217db {
+.content.data-v-3349f22e {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -34,7 +34,7 @@
   -webkit-justify-content: center;
           justify-content: center;
 }
-.logo.data-v-71e217db {
+.logo.data-v-3349f22e {
   height: 200rpx;
   width: 200rpx;
   margin-top: 200rpx;
@@ -42,7 +42,7 @@
   margin-right: auto;
   margin-bottom: 50rpx;
 }
-.text-area.data-v-71e217db {
+.text-area.data-v-3349f22e {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -60,7 +60,7 @@
   width: 100rpx;
   height: 100rpx;
 }
-.title.data-v-71e217db {
+.title.data-v-3349f22e {
   font-size: 36rpx;
   color: #8f8f94;
 }

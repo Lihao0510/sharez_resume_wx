@@ -2,13 +2,25 @@
   "pages": [
     "pages/home/index"
   ],
-  "subPackages": [],
+  "subPackages": [
+    {
+      "root": "attach_pages",
+      "pages": [
+        "home/index"
+      ]
+    }
+  ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于我们为您提供精准的推荐服务"
+    }
+  },
   "usingComponents": {},
-  "sitemapLocation": "sitemap66.json"
+  "sitemapLocation": "sitemap41.json"
 }

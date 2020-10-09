@@ -2,18 +2,17 @@ import Fly from "flyio/dist/npm/wx";
 import {
   VUE_APP_API_URL
 } from "@/config";
-
+import { fastLogin } from '../utils/user_util.js';
 
 const fly = new Fly()
 fly.config.baseURL = VUE_APP_API_URL
 
 fly.interceptors.response.use(
   response => {
-    // console.log(response)
-    // 定时刷新access-token
     return response;
   },
   error => {
+    console.log('Fly响应返回失败', error);
     if (error.toString() == 'Error: Network Error') {
       console.log('发送请求失败', error)
       return Promise.reject({
@@ -22,10 +21,19 @@ fly.interceptors.response.use(
       });
     }
     if (error.status == 401) {
-      console.log('登录失效 401', error)
+      console.log('Token授权失败', error)
+      fastLogin();
       return Promise.reject({
-        msg: "未登录",
-        toLogin: true
+        code: 401,
+        message: 'Token授权失败'
+      });
+    }
+    if (error.status == 422) {
+      console.log('Token校验失败', error)
+      fastLogin();
+      return Promise.reject({
+        code: 422,
+        message: 'Token校验失败'
       });
     }
     return Promise.reject(error);
@@ -39,11 +47,12 @@ const defaultOpt = {
 function baseRequest(options) {
 
   // 从缓存中获取 token 防止 token 失效后还会继续请求的情况
+  const token = uni.getStorageSync('token');
   // 合并传参过来的 headers
   // 如果接口需要登录，携带 token 去请求
   options.headers = {
     ...options.headers,
-    Authorization: "Bearer " + 'token'
+    Authorization: 'Bearer ' + token
   }
   // 结构请求需要的参数
   const {
@@ -53,8 +62,6 @@ function baseRequest(options) {
     login,
     ...option
   } = options
-  
-  console.log('即将请求的URL ==>', url, VUE_APP_API_URL)
 
   // 发起请求
   return fly.request(url, params || data, {
@@ -68,22 +75,7 @@ function baseRequest(options) {
         data
       });
     }
-    if ([410000, 410001, 410002].indexOf(data.status) !== -1) {
-      return Promise.reject({
-        msg: res.data.msg,
-        res,
-        data,
-        toLogin: true
-      });
-    } else if (data.status === 200 || data.code === 200) { // 兼容返回标识码为code的情况
-      return Promise.resolve(data, res);
-    } else {
-      return Promise.reject({
-        msg: res.data.msg,
-        res,
-        data
-      });
-    }
+    return Promise.resolve(data);
   });
 }
 

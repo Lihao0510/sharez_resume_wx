@@ -1,0 +1,63 @@
+@Theme_Color: #57BE81;
+@Black02_SOLID: #FAFAFA;
+@Black04_SOLID: #F5F5F5;
+@Black08_SOLID: #EBEBEB;
+@Black16_SOLID: #D6D6D6;
+@Black32_SOLID: #ADADAD;
+@Black56_SOLID: #707070;
+@Black84_SOLID: #292929;
+
+.ellipsis {
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+
+.flexible(@flexDirection, @align: flex-start, @justify: flex-start) {
+	display: flex;
+	flex-direction: @flexDirection;
+	align-items: @align;
+	justify-content: @justify;
+}
+
+.single-line {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.double-line {
+  display: -webkit-box;      //定义为自适应布局
+  word-break: break-all;
+  text-overflow: ellipsis;  //超出文字用省略号代替
+  overflow: hidden;            //多出不分隐藏
+  -webkit-box-orient: vertical;    //竖直方向的超出和隐藏
+  -webkit-line-clamp: 2;    //设定行数为2
+}
+
+.font-semi(@fontSize, @color) {
+	font-family: PingFangSC-Semibold;
+	font-weight: 600;
+	font-size: @fontSize;
+	color: @color;
+}
+
+.font-medium(@fontSize, @color) {
+	font-family: PingFangSC-Medium;
+	font-weight: 500;
+	font-size: @fontSize;
+	color: @color;
+}
+
+.font-regular(@fontSize, @color) {
+	font-family: PingFangSC-Regular;
+	font-weight: 400;
+	font-size: @fontSize;
+	color: @color;
+}
+
+.clickable {
+  &:active {
+    opacity: 0.8;
+  }
+}
